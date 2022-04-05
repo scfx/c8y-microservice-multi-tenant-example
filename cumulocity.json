@@ -2,7 +2,7 @@
     "apiVersion": "1",
     "version": "1.0.0-SNAPSHOT",
     "provider": {
-        "name": "Cumulocity"
+        "name": "Felix Schaede"
     },
     "isolation": "MULTI_TENANT",
     "requiredRoles": [

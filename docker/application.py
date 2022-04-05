@@ -1,30 +1,16 @@
 #!flask/bin/python
 
 import os
-import logging
 from flask import Flask, jsonify, request
 from common import base64_credentials, get_subscriber_for, get_url_for, get_epl_files
 
 app = Flask(__name__)
-logger = logging.getLogger('microservice')
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger.debug('Logger for microservice was initialized')
-# Hello world endpoint
-
-
-@app.route('/')
-def hello():
-    return 'Hello world!'
-
-# Verify the status of the microservice
 
 
 @app.route('/health')
 def health():
+    '''Verify the status of the microservice'''
     return '{ "status" : "UP" }'
-
-# Get environment details
 
 
 @app.route('/environment')
@@ -35,7 +21,7 @@ def environment():
         'mqttPlatformUrl': os.getenv('C8Y_BASEURL_MQTT'),
         'tenant': os.getenv('C8Y_BOOTSTRAP_TENANT'),
         'user': os.getenv('C8Y_BOOTSTRAP_USER'),
-        'password': '...',  # os.getenv('C8Y_BOOTSTRAP_PASSWORD')
+        'password': os.getenv('C8Y_BOOTSTRAP_PASSWORD'),
         'microserviceIsolation': os.getenv('C8Y_MICROSERVICE_ISOLATION')
     }
 
